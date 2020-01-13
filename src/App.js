@@ -1,28 +1,18 @@
 import React from 'react';
-import todoList from './components/TodoComponents/TodoList'
+import TodoList from './components/TodoComponents/TodoList'
 import TodoForm from './components/TodoComponents/TodoForm'
-const todo = [
+import './components/TodoComponents/Todo'
+const todos = [
   {
-    task: 'Practice Italian',
+    name: 'Practice Italian',
     id: 1,
     completed: false
   },
   {
-    task: 'Read for an hour',
+    name: 'party',
     id: 2,
     completed: false
-  },
-  {
-    task: 'Eat healthy',
-    id: 3,
-    completed: false
-  },
-  {
-    task: 'Exercise Daily',
-    id: 4,
-    completed: false
   }
-
 ]
 
 class App extends React.Component {
@@ -31,18 +21,21 @@ class App extends React.Component {
     super();
     //initialize the state object
     this.state = {
-      todoList: todo
-    }
+      todoList: todos
+    };
   }
   
-  toggleItem = id => {
+  toggleTodo = id => {
     
-    const newTodoList = this.state.todoList.map(todo => {
-      if (DataTransferItem.id === id) {
+    const newTodoList = this.state.todoList.map(task => {
+      if (task.id === id) {
+        console.log("This is the task currently being checked for completion", task)
         return {
-          ...todo,
-          completed: !todo.completed
+          ...task,
+          completed: !task.completed
         };
+      } else {
+        return task;
       }
     });
     this.setState({
@@ -50,24 +43,27 @@ class App extends React.Component {
     });
   };
 
-  addTodo = todoName => {
+  addTodo = todoText => {
     const newTodo = {
-      name: todoName,
+      name: todoText,
       id: Date.now(),
       completed: false
     }
+    console.log("State inside of add Todo", this.state)
     this.setState({
       todoList: [ ...this.state.todoList, newTodo]
     })
+    console.log("State after new todo entry", this.state)
   }
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
   render() {
+    console.log("State before Render", this.state)
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoForm addTodo={this.addTodo} />
-        <todoList todoList={this.state.todoList} />
+        <TodoList todos={this.state.todoList} toggleTodo={this.toggleTodo} />
 
       </div>
     );

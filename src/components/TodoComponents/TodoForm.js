@@ -18,7 +18,7 @@ constructor(props) {
   // class property to submit form
 handleSubmit = e => {
   e.preventDefault();
-  this.props.addItem(this.state.todoText)
+  this.props.addTodo(this.state.todoText)
 }
   render() {
     return (

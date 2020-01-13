@@ -2,13 +2,13 @@
 // feel free to change this component.js into TodoList.js
 import React from 'react';
 import Todo from './Todo';
-
+import './Todo.css'
 
 const TodoList = props => {
     return (
     <div className="todo-list">
-        {props.TodoList.map(todo => (
-           <Todo key={todo.id} todo={todo} />
+        {props.todos.map(todo => (
+           <Todo key={todo.id} todo={todo} toggleTodo={props.toggleTodo} />
         ))}
         <button className="clear-btn">Clear Completed</button>
     </div>
