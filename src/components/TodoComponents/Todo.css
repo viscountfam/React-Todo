@@ -52,7 +52,7 @@ span {
       margin: 0 auto;
   }
 
-  .todo {
+  .incomplete{
       background-color: #ff8232;
       width: 45%;
       text-align: left;
@@ -61,9 +61,15 @@ span {
       cursor: pointer;
   }
 
-  .item.completed {
+
+   .completed {
       background-color: #ff8754;
       text-decoration: line-through;
+      width: 45%;
+      text-align: left;
+      margin: 2px 0;
+      padding-left: 8px;
+      cursor: pointer;
   }
 
   form {
